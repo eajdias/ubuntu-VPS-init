@@ -143,13 +143,15 @@ services:
         limits:
           memory: 512M
     volumes:
-      - ./storage:/app/storage
+      - chatwoot_storage:/app/storage
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
     networks:
       - ${DOCKER_NETWORK}
     command: ["bundle", "exec", "sidekiq", "-C", "config/sidekiq.yml"]
 
+volumes:
+  chatwoot_storage:
 networks:
   ${DOCKER_NETWORK}:
     external: true

@@ -172,8 +172,7 @@ if [[ "$WANT_DB" == true ]]; then
     if [[ ${#DBS[@]} -gt 0 ]]; then
         "${SCRIPT_DIR}/05-databases.sh" "${DBS[@]}"
     else
-        # Se escolheu apenas os bancos, executa sem argumentos extras
-        "${SCRIPT_DIR}/05-databases.sh"
+        echo -e "${YELLOW}⏩ Nenhum banco de dados específico para provisionar no momento.${NC}"
     fi
 else
     echo -e "${YELLOW}⏩ Pulando Bancos de Dados (Scripts 04 e 05).${NC}"

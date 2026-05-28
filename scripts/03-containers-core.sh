@@ -81,6 +81,9 @@ mkdir -p "$FB_DIR"
 USER_UID=$(id -u "$REAL_USER")
 USER_GID=$(id -g "$REAL_USER")
 
+mkdir -p "${FB_DIR}/fb_db" "${FB_DIR}/config"
+chown -R "${USER_UID}:${USER_GID}" "${FB_DIR}/fb_db" "${FB_DIR}/config"
+
 cat > "${FB_DIR}/docker-compose.yml" << EOF
 services:
   filebrowser:
@@ -159,7 +162,7 @@ services:
     ports:
       - "${PORT_UPTIME_KUMA}:3001"
     volumes:
-      - ./data:/app/data
+      - uptime_kuma_data:/app/data
     deploy:
       resources:
         limits:
@@ -169,6 +172,8 @@ services:
     networks:
       - ${DOCKER_NETWORK}
 
+volumes:
+  uptime_kuma_data:
 networks:
   ${DOCKER_NETWORK}:
     external: true

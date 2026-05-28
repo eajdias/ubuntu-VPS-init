@@ -36,7 +36,7 @@ chmod 600 "${PG_DIR}/.env"
 cat > "${PG_DIR}/docker-compose.yml" << EOF
 services:
   databases-central:
-    build: ${SCRIPT_DIR}
+    build: ${SCRIPT_DIR}/..
     image: ${PG_IMAGE}
     container_name: databases-central
     restart: unless-stopped
@@ -60,7 +60,6 @@ services:
           memory: 512M
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
-EOF
 
 volumes:
   databases_central_data:
@@ -97,7 +96,7 @@ services:
     ports:
       - "${PORT_REDIS}:6379"
     volumes:
-      - ./data:/data
+      - redis_central_data:/data
     deploy:
       resources:
         limits:
@@ -112,6 +111,8 @@ services:
     networks:
       - ${DOCKER_NETWORK}
 
+volumes:
+  redis_central_data:
 networks:
   ${DOCKER_NETWORK}:
     external: true

@@ -58,6 +58,9 @@ chmod 600 "${N8N_DIR}/.env"
 USER_UID=$(id -u "${SUDO_USER:-$USER}")
 USER_GID=$(id -g "${SUDO_USER:-$USER}")
 
+mkdir -p "${N8N_DIR}/data"
+chown -R "${USER_UID}:${USER_GID}" "${N8N_DIR}/data"
+
 cat > "${N8N_DIR}/docker-compose.yml" << EOF
 services:
   n8n:
