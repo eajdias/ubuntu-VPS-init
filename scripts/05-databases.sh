@@ -75,7 +75,7 @@ ensure_databases_central() {
     log_ok "databases-central operacional."
 
     # Sincroniza a senha do Postgres (caso o volume seja antigo e a senha no .env tenha mudado)
-    docker exec databases-central psql -U "$PG_USER" -c "ALTER USER \"$PG_USER\" WITH PASSWORD '${PG_PASSWORD}';" > /dev/null
+    docker exec databases-central psql -U "$PG_USER" -c "ALTER USER \"$PG_USER\" WITH PASSWORD \$\$${PG_PASSWORD}\$\$;" > /dev/null
     
     _pg_ready=true
 }

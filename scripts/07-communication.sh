@@ -41,13 +41,16 @@ log_section "Evolution API"
 EVO_DIR="${HOME_DIR}/evolution"
 mkdir -p "$EVO_DIR"
 
+# URL-encode da senha para evitar quebra da URI caso tenha @, /, ?, etc.
+PG_PASSWORD_ENCODED=$(jq -nr --arg v "$PG_PASSWORD" '$v|@uri')
+
 cat > "${EVO_DIR}/.env" << EOF
 SERVER_URL=https://${EVO_DOMAIN}
 AUTHENTICATION_TYPE=apikey
 AUTHENTICATION_API_KEY=${EVO_API_KEY}
 DATABASE_ENABLED=true
 DATABASE_PROVIDER=postgresql
-DATABASE_CONNECTION_URI=postgresql://${PG_USER}:${PG_PASSWORD}@databases-central:5432/evolution?sslmode=disable
+DATABASE_CONNECTION_URI=postgresql://${PG_USER}:${PG_PASSWORD_ENCODED}@databases-central:5432/evolution?sslmode=disable
 REDIS_ENABLED=true
 REDIS_URI=redis://redis-central:6379/${REDIS_DB_EVOLUTION}
 CHATWOOT_ENABLED=true

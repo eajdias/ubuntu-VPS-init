@@ -77,7 +77,7 @@ echo ""
 log_ok "databases-central pronto!"
 
 # Sincroniza a senha do Postgres (caso o volume seja antigo e a senha no .env tenha mudado)
-docker exec databases-central psql -U "$PG_USER" -c "ALTER USER \"$PG_USER\" WITH PASSWORD '${PG_PASSWORD}';" > /dev/null
+docker exec databases-central psql -U "$PG_USER" -c "ALTER USER \"$PG_USER\" WITH PASSWORD \$\$${PG_PASSWORD}\$\$;" > /dev/null
 
 log_info "Instalando extensão pg_cron no banco postgres..."
 docker exec databases-central psql -U "$PG_USER" -d postgres -c "CREATE EXTENSION IF NOT EXISTS pg_cron;" > /dev/null

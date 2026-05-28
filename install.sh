@@ -25,7 +25,11 @@ if [ ! -d "$REPO_NAME" ]; then
     git clone "$REPO_URL" "$REPO_NAME"
 else
     echo "🔄 Atualizando repositório existente..."
-    cd "$REPO_NAME" && git pull && cd ..
+    cd "$REPO_NAME"
+    git stash &> /dev/null || true
+    git pull
+    git stash pop &> /dev/null || true
+    cd ..
 fi
 
 cd "$REPO_NAME"

@@ -28,7 +28,7 @@ echo -e "${RED} AVISO: VOCÊ ESTÁ PRESTES A EXCLUIR TODOS OS DADOS E CONTAINERS
 echo -e "${RED} Isso inclui bancos de dados (Postgres, Redis), N8N, Chatwoot, etc.${NC}"
 echo -e "${RED} (Os backups na pasta ~/backups NÃO serão excluídos por padrão)${NC}"
 echo -e "${RED}====================================================================${NC}"
-read -rp "Tem certeza absoluta que deseja continuar? (digite 'SIM' para confirmar): " CONFIRM
+read -rp "Tem certeza absoluta que deseja continuar? (digite 'SIM' para confirmar): " CONFIRM </dev/tty
 if [[ "$CONFIRM" != "SIM" ]]; then
     echo "Operação cancelada."
     exit 0
