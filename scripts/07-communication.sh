@@ -157,23 +157,11 @@ networks:
     external: true
 EOF
 
+log_info "Executando migrações do Chatwoot (isso pode demorar alguns minutos)..."
+cd "$CW_DIR" && docker compose run --rm chatwoot-app bundle exec rails db:chatwoot_prepare
+
 log_info "Subindo Chatwoot App..."
 cd "$CW_DIR" && docker compose up -d chatwoot-app --remove-orphans
-
-log_info "Aguardando Chatwoot app ficar pronto..."
-timeout=120
-elapsed=0
-until docker exec chatwoot-app bundle exec rails runner "puts 'ok'" &>/dev/null; do
-  if [[ $elapsed -ge $timeout ]]; then
-    log_warn "Timeout aguardando chatwoot-app; tentando db:prepare mesmo assim..."
-    break
-  fi
-  printf '.'; sleep 5; elapsed=$((elapsed + 5))
-done
-echo ""
-
-log_info "Executando migrações do Chatwoot (pode demorar)..."
-docker exec chatwoot-app bundle exec rails db:prepare || log_warn "Falha ao rodar db:prepare automática."
 
 log_info "Subindo Chatwoot Worker..."
 cd "$CW_DIR" && docker compose up -d chatwoot-worker --remove-orphans

@@ -89,13 +89,13 @@ Gerencia atualizações automáticas de imagens Docker.
 
 | Serviço      | Porta  | Acesso externo via Cloudflare |
 |--------------|--------|-------------------------------|
-| Chatwoot     | 3000   | `sub_dominio-chatwoot.seu-dominio.com` |
-| Evolution    | 8080   | `sub_dominio-evolution.seu-dominio.com` |
-| n8n          | 5678   | `sub_dominio-n8n.seu-dominio.com` |
-| Filebrowser  | 8081   | `sub_dominio-files.seu-dominio.com` |
-| Netdata      | 19999  | `sub_dominio-netdata.seu-dominio.com` |
-| Uptime Kuma  | 3001   | `sub_dominio-uptime.seu-dominio.com` |
-| Dozzle       | 8083   | `sub_dominio-dozzle.seu-dominio.com` |
+| Chatwoot     | 3000   | `sub_dominio-chatwoot.dominio.com` |
+| Evolution    | 8080   | `sub_dominio-evolution.dominio.com` |
+| n8n          | 5678   | `sub_dominio-n8n.dominio.com` |
+| Filebrowser  | 8081   | `sub_dominio-files.dominio.com` |
+| Netdata      | 19999  | `sub_dominio-netdata.dominio.com` |
+| Uptime Kuma  | 3001   | `sub_dominio-uptime.dominio.com` |
+| Dozzle       | 8083   | `sub_dominio-dozzle.dominio.com` |
 
 ### Política de Auto-atualização (Watchtower)
 

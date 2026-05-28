@@ -72,38 +72,43 @@ echo -e "3) ${CYAN}Padrão${NC}"
 echo -ne "\nEscolha (1-3): "
 read -r env_choice || env_choice="3"
 
+PREFIX=""
 BASE_DOMAIN=""
 case "${env_choice:-3}" in
     1)
-        echo -ne "Digite o domínio base (ex: eajdias.com): "
-        read -r domain_base || domain_base="exemplo.com"
-        BASE_DOMAIN="teste-beszel.${domain_base}"
+        echo -ne "Digite o domínio base (ex: dominio.com): "
+        read -r BASE_DOMAIN || BASE_DOMAIN="dominio.com"
+        echo -ne "Digite o prefixo para os subdomínios (padrão: teste-): "
+        read -r prefix_input
+        PREFIX="${prefix_input:-teste-}"
         ;;
     2)
-        echo -ne "Deseja adicionar um sub-nome ao domínio? (ex: zscan): "
+        echo -ne "Deseja adicionar um prefixo aos subdomínios? (ex: vps-teste-): "
         read -r subname || subname=""
-        echo -ne "Digite o domínio base (ex: eajdias.com): "
-        read -r domain_base || domain_base="exemplo.com"
-        if [ -n "$subname" ]; then
-            BASE_DOMAIN="${subname}-beszel.${domain_base}"
-        else
-            BASE_DOMAIN="beszel.${domain_base}"
-        fi
+        echo -ne "Digite o domínio base (ex: dominio.com): "
+        read -r BASE_DOMAIN || BASE_DOMAIN="dominio.com"
+        PREFIX="$subname"
         ;;
     *)
-        echo -ne "Digite o domínio base (ex: exemplo.com): "
-        read -r BASE_DOMAIN || BASE_DOMAIN="exemplo.com"
+        echo -ne "Digite o domínio base (ex: dominio.com): "
+        read -r BASE_DOMAIN || BASE_DOMAIN="dominio.com"
+        PREFIX=""
         ;;
 esac
 
-if [ -n "$BASE_DOMAIN" ]; then
-    if grep -q "^BASE_DOMAIN=" 00-config.env; then
-        sed -i "s|^BASE_DOMAIN=.*|BASE_DOMAIN=\"${BASE_DOMAIN}\"|" 00-config.env
-    else
-        echo "BASE_DOMAIN=\"${BASE_DOMAIN}\"" >> 00-config.env
-    fi
-    echo -e "${GREEN}✅ Domínio configurado como: ${BASE_DOMAIN}${NC}"
+if grep -q "^BASE_DOMAIN=" 00-config.env; then
+    sed -i "s|^BASE_DOMAIN=.*|BASE_DOMAIN=\"${BASE_DOMAIN}\"|" 00-config.env
+else
+    echo "BASE_DOMAIN=\"${BASE_DOMAIN}\"" >> 00-config.env
 fi
+
+if grep -q "^PREFIX=" 00-config.env; then
+    sed -i "s|^PREFIX=.*|PREFIX=\"${PREFIX}\"|" 00-config.env
+else
+    echo "PREFIX=\"${PREFIX}\"" >> 00-config.env
+fi
+
+echo -e "${GREEN}✅ Domínio base: ${BASE_DOMAIN} | Prefixo: '${PREFIX}'${NC}"
 
 log_step "Configuração de Variáveis (00-config.env)"
 echo -e "Pressione ${BOLD}ENTER${NC} para manter o valor padrão entre colchetes.\n"

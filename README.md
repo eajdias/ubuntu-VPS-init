@@ -2,7 +2,7 @@
 
 [![Python Version](https://img.shields.io/badge/python-3.14%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
-[![Project Version](https://img.shields.io/badge/version-1.0.0-green)](https://github.com/eajdias/mcp_zscan_assist)
+[![Project Version](https://img.shields.io/badge/version-1.0.0-green)](https://github.com/eajdias/ubuntu-VPS-init)
 [![License](https://img.shields.io/badge/license-Proprietary-red.svg)](LICENSE)
 
 Uma stack completa, leve e resiliente para provisionar uma central de atendimento e automação em sua VPS. Projetada para eficiência máxima em recursos, ideal para servidores com 1–2GB de RAM.
@@ -32,7 +32,7 @@ Para começar agora mesmo, escolha um dos métodos abaixo:
 Execute este comando para clonar e configurar tudo automaticamente:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/eajdias/ubuntu-VPS-init/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/eajdias/ubuntu-VPS-init/main/install.sh | sudo bash
 ```
 
 ### 🛠️ Método Manual
