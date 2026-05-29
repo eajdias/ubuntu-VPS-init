@@ -33,7 +33,7 @@ else
 fi
 
 cd "$REPO_NAME"
-chmod +x run-all.sh scripts/*.sh
+chmod +x scripts/*.sh
 
 # Inicia o orquestrador interativo garantindo acesso ao terminal (TTY)
-bash run-all.sh </dev/tty
+bash scripts/run-all.sh </dev/tty

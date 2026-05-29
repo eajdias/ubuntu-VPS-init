@@ -35,12 +35,20 @@ Execute este comando para clonar e configurar tudo automaticamente:
 curl -sSL https://raw.githubusercontent.com/eajdias/ubuntu-VPS-init/main/install.sh | sudo bash
 ```
 
+### ⚡ Otimização de Recursos (Performance)
+
+Se você mudou o plano da sua VPS ou quer ajustar a performance para o hardware atual (ECO, BALANCED ou PERFORMANCE):
+
+```bash
+curl -sSL https://raw.githubusercontent.com/eajdias/ubuntu-VPS-init/main/optimize.sh | sudo bash
+```
+
 ### 🧹 Desinstalação Rápida (Limpeza Total)
 
 Caso algo dê errado ou você queira limpar a VPS para começar do zero, execute o comando abaixo (AVISO: apaga todos os containers, volumes e pastas criadas, mantendo apenas as imagens e backups):
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/eajdias/ubuntu-VPS-init/main/uninstall.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/eajdias/ubuntu-VPS-init/main/scripts/uninstall.sh | sudo bash
 ```
 
 ### 🛠️ Método Manual
@@ -53,7 +61,7 @@ cd vps-stack
 # Edite suas credenciais
 nano 00-config.env
 # Execute o instalador interativo
-sudo bash run-all.sh
+sudo bash scripts/run-all.sh
 ```
 
 ## Documentação

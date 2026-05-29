@@ -33,7 +33,7 @@ curl -sSL https://raw.githubusercontent.com/eajdias/ubuntu-VPS-init/main/install
    *Note: This file contains crucial settings like domains, database passwords, API keys, and Docker image versions.*
 3. Execute the interactive orchestrator script:
    ```bash
-   sudo bash run-all.sh
+   sudo bash scripts/run-all.sh
    ```
 
 ## Development Conventions
@@ -41,5 +41,5 @@ curl -sSL https://raw.githubusercontent.com/eajdias/ubuntu-VPS-init/main/install
 - **Modular Orchestration:** Deployment steps are divided into specialized, numbered shell scripts located in the `scripts/` directory (e.g., `01-vps-config.sh`, `02-vps-essentials.sh`, `06-n8n.sh`).
 - **Centralized Configuration:** All shared environment variables, domain mappings, and credentials are kept in `00-config.env`.
 - **Resource Optimization:** The architecture explicitly avoids standalone databases for each service; instead, it uses a central Postgres and Redis instance (`04-databases-central.sh`) to minimize RAM usage.
-- **Interactive Prompts:** The `run-all.sh` script is designed to be interactive, prompting the user for environment type, domain names, and optional component selection (like n8n or Chatwoot) before executing the modular scripts.
+- **Interactive Prompts:** The `scripts/run-all.sh` script is designed to be interactive, prompting the user for environment type, domain names, and optional component selection (like n8n or Chatwoot) before executing the modular scripts.
 - **Docker-centric:** All services are deployed as Docker containers, with logging configurations standardized globally via environment variables.

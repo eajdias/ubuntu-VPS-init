@@ -11,8 +11,8 @@ if [ ! -t 0 ]; then
 fi
 
 # --- Diretórios ---
-ROOT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
-SCRIPT_DIR="${ROOT_DIR}/scripts"
+SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+ROOT_DIR="$(dirname "$SCRIPT_DIR")"
 cd "$ROOT_DIR"
 
 # --- Cores e Estilo ---

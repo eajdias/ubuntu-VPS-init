@@ -49,6 +49,19 @@ git fetch origin
 git reset --hard origin/main
 ```
 
+### 3. Preserve Local Changes (Stash Pattern)
+When you want to pull updates but keep local modifications (like `.env` files), use `git stash` to wrap the update.
+
+```bash
+# Temporarily stash local changes (ignore error if none)
+git stash &> /dev/null || true
+
+git pull
+
+# Restore stashed changes (ignore error if none)
+git stash pop &> /dev/null || true
+```
+
 ## Verification
 - Verify the working directory is clean before the script runs.
 - Test with local commits to ensure the script warns rather than rebases.

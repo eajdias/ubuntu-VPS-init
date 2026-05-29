@@ -36,8 +36,9 @@ fi
 
 # Tenta carregar a configuração para obter o nome da rede, se existir
 SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
-if [[ -f "${SCRIPT_DIR}/00-config.env" ]]; then
-    source "${SCRIPT_DIR}/00-config.env"
+ROOT_DIR="$(dirname "$SCRIPT_DIR")"
+if [[ -f "${ROOT_DIR}/00-config.env" ]]; then
+    source "${ROOT_DIR}/00-config.env"
 fi
 DOCKER_NETWORK="${DOCKER_NETWORK:-proxy-network}"
 
